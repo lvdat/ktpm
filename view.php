@@ -22,6 +22,26 @@ if(isset($_GET['id'])){
         <p><?=$nd?></p>
     </div>
 </div>
+<div class="card mb-2">
+<div class="card-header">Phản hồi cho bài viết</div>
+<div class="card-body">
+    <? if(login()) :?>
+    <div class="row">
+        <div class="col-2 text-center"><img src="<?=getsv(MSSV)['avatar']?>" style="max-width: 70%; border-radius: 50%; bodrder: 1px solid #000" /></div>
+        <div class="col-10">
+            <form id="comment">
+                <textarea class="form-control mb-2" name="noidung" id="comment_nd"></textarea>
+                <button type="submit" name="gui" class="btn btn-success btn-sm">Phản hồi</button>
+            </form>
+            <script type="text/javascript">
+
+            </script>
+        </div>
+    </div>
+    
+    <? endif ?>
+    
+</div></div>
 <? else: ?>
 <? endif ?>
 <?
