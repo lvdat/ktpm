@@ -5,3 +5,4 @@ RewriteRule ^logout$ /logout.php
 RewriteRule ^chat$ /chat.php
 RewriteRule ^view/([0-9]+)$ /view.php?id=$1
 RewriteRule ^admin/create/(.*)$ /admin/create.php?action=$1
+RewriteRule ^view$ /view.php

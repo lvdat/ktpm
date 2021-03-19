@@ -4,11 +4,27 @@ require './inc/head.php';
 ?>
 <div class="card mb-2">
     <div class="card-header bg-primary text-white"><i class="fas fa-bell"></i> Thông báo mới nhất</div>
-    <div class="card-body">
+    <ul class="list-group list-group-flush">
         <?
-            $sql = "SELECT * FROM thongbao ORDER BY ID DESC LIMIT 3";
+            $sql = "SELECT * FROM thongbao ORDER BY ID DESC LIMIT 4";
+            $kq = $conn->query($sql);
+            if($kq->num_rows > 0){
+                $i = 1;
+                while($e = mysqli_fetch_assoc($kq)){
+                    if($i == 4){
+                        echo '<li class="list-group-item"><a href="/view" class="btn btn-secondary">Xem thêm...</a></li>';
+                        break;
+                    }
+                    echo '<li class="list-group-item"><a href="/view/'.$e['ID'].'">'.$e['name'].'</a><br/>
+                        <small class="text-muted">'.preg_replace('/\s+?(\S+)?$/', '', substr(strip_tags($e['noidung']), 0, 201)).'
+                    </small></li>';
+                    $i++;
+                }
+            }else{
+                echo 'Không có thông báo!';
+            }
         ?>
-    </div>
+    </ul>
 </div>
 
 <div class="card mb-2">
