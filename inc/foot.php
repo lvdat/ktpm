@@ -11,7 +11,7 @@
                                         <img style="max-width: 43%;border: 3px solid #ab1170;border-radius: 50%" src="<?=getsv(MSSV)['avatar'];?>">
                                     <? endif ?>
                                 </li>
-                                <li class="list-group-item">Đang đăng nhập: <?=getsv(MSSV)['name']?> </li>
+                                <li class="list-group-item text-center"><?if(getsv(MSSV)['level'] > 0){echo '<span class="badge bg-danger"><i class="fas fa-user-shield"></i> ADMIN</span> ';}?><span class="badge bg-secondary"><?=MSSV?></span> <b><?=getsv(MSSV)['name']?></b></li>
                             </ul>
                         </div>
                         <div class="card mb-2">
