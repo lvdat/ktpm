@@ -15,7 +15,7 @@ require './inc/head.php';
                         echo '<li class="list-group-item"><a href="/view" class="btn btn-secondary">Xem thêm...</a></li>';
                         break;
                     }
-                    echo '<li class="list-group-item"><a href="/view/'.$e['ID'].'">'.$e['name'].'</a><br/>
+                    echo '<li class="list-group-item"><a href="/view/'.$e['ID'].'">'.$e['name'].'</a><small><i class="text-muted">'.timeago($e['time']).'</i></small><br/>
                         <small class="text-muted">'.preg_replace('/\s+?(\S+)?$/', '', substr(strip_tags($e['noidung']), 0, 201)).'
                     </small></li>';
                     $i++;

@@ -72,7 +72,7 @@ if(login()){
 
             tmp='<span class="date">'+today+' | '+nowTime+'</span>';
 
-            document.getElementById("clock").innerHTML=tmp;
+            $('#clock_vitri').html(tmp);
 
             clocktime=setTimeout("time()","1000","JavaScript");
             function checkTime(i)
@@ -133,16 +133,23 @@ if(login()){
         </div>
     </nav>
     <!-- end nav -->
-    <div class="container-md" id="main">
+    <div class="container-md" id="maintxt">
         <div class="row d-flex justify-content-center" id="row">
-            <div class="d-none d-md-block col-md-3 sticky">
-              <div class="card">
+            <div class="d-none d-md-block col-md-3">
+              <div class="sticky"><div class="card">
               <div class="card-header"><i class="fas fa-cogs"></i> Hệ thống</div>
                 <ul class="list-group list-group-flush">
-                <li class="list-group-item text-center"><span id="clock"></p></span>
+                <li class="list-group-item text-center"><span id="clock_vitri"></p></span>
                 <li class="list-group-item">IP: <?=getip()?></li>
-
+                <li class="list-group-item">Lượt xem trang: </li>
+                <li class="list-group-item">Load trang trong: <span id="load_time"></span>ms
+                <script>
+                window.onload = function () {
+                    var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
+                    $('#load_time').html(loadTime); 
+                }
+                </script> </li>
                 </ul>
               </div>
-            </div>
+            </div></div>
             <div class="col-md-6">

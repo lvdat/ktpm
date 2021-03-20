@@ -64,6 +64,63 @@
                 </div>
             </div>
         </div>
+        <!-- Footer -->
+        <footer class="bg-light text-center text-lg-start">
+        <!-- Grid container -->
+        <div class="container p-4">
+            <!--Grid row-->
+            <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase"><i class="fas fa-cogs"></i> KTPM SYSTEM</h5>
+
+                <p>
+                Hệ thống thông tin của sinh viên lớp Kỹ thuật phần mềm. Ngoài ra còn là hệ thống luyện tập lập trình với các bài tập khó dễ khác nhau, trình biên dịch trực tiếp có thể giúp các bạn tìm lỗi sai, học hỏi để nâng cao trình độ!
+                </p>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase"><i class="fas fa-heart"></i> Special Thanks to</h5>
+
+                <ul class="list-unstyled mb-0">
+                <li>
+                    <a href="https://mdbootstrap.com/" class="text-dark"><i class="fab fa-mdb"></i> MDBootstrap</a>
+                </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase"><i class="fas fa-chart-line"></i> STATS</h5>
+
+                <ul class="list-unstyled mb-0">
+                <li class="text-dark">
+                <i class="far fa-clock"></i> Load trang trong 1.0E-6 giây
+                </li>
+                <li class="text-dark">
+                <i class="fas fa-eye"></i> Total views:           </li>
+                <li class="text-dark">
+                    <i class="fas fa-code-branch"></i> Version: 2.5.0-release
+                </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+            KTPM <sup>K46</sup> SYSTEM © 2020-2021 BY 
+            <a class="text-dark" target="_blank" href="https://www.facebook.com/vilogger.dev/">DATLEVAN</a>
+        </div>
+        <!-- Copyright -->
+        </footer>
+        <!-- Footer -->
     </body>
 </html>
 <? echo '<!-- Time server: '.time().'

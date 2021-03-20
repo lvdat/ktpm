@@ -486,16 +486,53 @@ if(isset($_GET['test'])){
 }
 ?>
 <? elseif($entry == 'comment'): ?>
-<? if(isset($_POST['gui'])){
-
+<? if(isset($_POST['noidung'])){
+    if(login()){
+        $author = $_SESSION['logged'];
+        $nd = $_POST['noidung'];
+        $time = time();
+        $post = $_POST['post'];
+        $sql = "INSERT INTO binhluan (noidung, author, post, time) VALUES ('$nd', '$author', '$post', '$time')";
+        $kq = $conn->query($sql);
+        if($kq){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }else{
+        echo 0;
+    }
 }else{
     echo 0;
-    if(login()){
-        echo 'OK';
-    }
 }
 ?>
-  
+<? elseif($entry == 'showcomment'): ?>
+<? if(isset($_GET['post'])){
+    $tb_id = $_GET['post'];
+    if(getthongbao($tb_id) != 0){
+        $sql = "SELECT * FROM binhluan WHERE post = '$tb_id' ORDER BY ID DESC";
+        $kq = $conn->query($sql);
+        if($kq->num_rows > 0){
+            while($e = mysqli_fetch_assoc($kq)){
+                echo '<div class="card mb-2">
+                <div class="card-body">
+                <div class="row">
+                    <div class="col-2 text-center"><img src="'.getsv($e['author'])['avatar'].'" width="50%" style="border-radius: 50%"></div>
+                    <div class="col-10 text-left"><b>'.getsv($e['author'])['name'].'</b> <span class="badge bg-secondary">'.$e['author'].'</span><br />
+                    <small><i class="text-muted">'.timeago($e['time']).'</i></small><br/>
+                    <p>'.$e['noidung'].'</p>
+                    </div>
+                </div></div></div>';
+            }
+        }else{
+            echo '<div class="card-body text-center">Chưa có bình luận</div>';
+        }
+    }else{
+        echo 'Lỗi dữ liệu';
+    }
+}  
+?>
+
 <?php else :?>
 <i>Wrong data.</i>
 <?php endif ?>

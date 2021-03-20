@@ -5,6 +5,7 @@ $user = 'root';
 $pass = '';
 $db = 'test';
 $conn = mysqli_connect($host, $user, $pass, $db);
+mysqli_set_charset($conn, 'UTF8');
 if(!$conn){
     echo 'Connect Failed';
     exit();
