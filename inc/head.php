@@ -139,7 +139,7 @@ if(login()){
               <div class="sticky"><div class="card">
               <div class="card-header"><i class="fas fa-cogs"></i> Hệ thống</div>
                 <ul class="list-group list-group-flush">
-                <li class="list-group-item text-center"><span id="clock_vitri"></p></span>
+                <li class="list-group-item text-center"><?=date("d/m/Y | H:i:s")?></li>
                 <li class="list-group-item">IP: <?=getip()?></li>
                 <li class="list-group-item">Lượt xem trang: </li>
                 <li class="list-group-item">Load trang trong: <span id="load_time"></span>ms

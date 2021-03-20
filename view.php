@@ -128,7 +128,6 @@ for ($i = 1; $i <= $total_page; $i++){
         echo '<li class="page-item"><a class="page-link" href="?page='.$i.'">'.$i.'</a></li>';
     }
 }
-
 // nếu current_page < $total_page và total_page > 1 mới hiển thị nút prev
 if ($current_page < $total_page && $total_page > 1){
     echo '<li class="page-item"><a class="page-link" href="?page='.($current_page+1).'"><span aria-hidden="true">&raquo;</span>
