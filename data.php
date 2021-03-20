@@ -485,7 +485,16 @@ if(isset($_GET['test'])){
     }
 }
 ?>
+<? elseif($entry == 'comment'): ?>
+<? if(isset($_POST['gui'])){
 
+}else{
+    echo 0;
+    if(login()){
+        echo 'OK';
+    }
+}
+?>
   
 <?php else :?>
 <i>Wrong data.</i>

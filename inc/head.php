@@ -1,5 +1,4 @@
 <?
-session_start();
 // include file config server
 include $_SERVER['DOCUMENT_ROOT'].'/inc/all.php';
 
@@ -139,12 +138,11 @@ if(login()){
             <div class="d-none d-md-block col-md-3 sticky">
               <div class="card">
               <div class="card-header"><i class="fas fa-cogs"></i> Hệ thống</div>
-                <div class="card-body">
-                <p class="text-center"><span id="clock"></span></p>
-                <hr />
-                <p>IP: <?=getip()?></p>
+                <ul class="list-group list-group-flush">
+                <li class="list-group-item text-center"><span id="clock"></p></span>
+                <li class="list-group-item">IP: <?=getip()?></li>
 
-                </div>
+                </ul>
               </div>
             </div>
             <div class="col-md-6">

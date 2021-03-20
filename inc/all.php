@@ -156,4 +156,6 @@ function timeago($ptime)
 }
 //VARIABLE DEFINE
 date_default_timezone_set('Asia/Ho_Chi_Minh');
+//session auto_start
+session_start();
 ?>
