@@ -36,7 +36,7 @@ function getsv($mssv){
 }
 function updateexp($mssv, $gt){
     global $conn;
-    $diem = getsv($mssv)[9];
+    $diem = getsv($mssv)['exp'];
     $diem = $diem + $gt;
     $sql = "UPDATE dssv SET exp = $diem WHERE mssv = '$mssv'";
     $conn->query($sql);

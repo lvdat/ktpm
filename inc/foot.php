@@ -30,6 +30,34 @@
                                 ?>
                             </ul>
                         </div>
+                        <div class="card mb-2">
+                            <div class="card-header">Ai đang trực tuyến?</div>
+                            <div class="card-body">
+                            <?
+                                $sql = "SELECT name, lastlogin, level FROM dssv";
+                                $kq = $conn->query($sql);
+                                $i = 0;
+                                while($e = mysqli_fetch_assoc($kq)){
+                                    $ago = time() - $e['lastlogin'];
+                                    $name = $e['name'];
+                                    if($i > 0 && $ago < 3600){
+                                        echo ', ';
+                                    }
+                                    if($e['level'] > 0){
+                                        $name = '<i class="fas fa-wrench" style="color:red"></i> '.$e['name'];
+                                    }
+                                    if($ago <= 60){
+                                        echo '<b>'.$name.'</b> <i class="fas fa-circle" style="color:green"></i>';
+                                    }elseif($ago > 60 && $ago < 3600){
+                                        echo '<b>'.$name.'</b><span class="badge rounded-pill bg-light text-dark"><i>'.round($ago/60, 0).' phút trước</i></span>';
+                                    }else{
+                                        
+                                    }
+                                    $i++;
+                                }
+                            ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
