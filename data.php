@@ -520,7 +520,7 @@ if(isset($_GET['test'])){
                     <div class="col-2 text-center"><img src="'.getsv($e['author'])['avatar'].'" width="50%" style="border-radius: 50%"></div>
                     <div class="col-10 text-left"><b>'.getsv($e['author'])['name'].'</b> <span class="badge bg-secondary">'.$e['author'].'</span><br />
                     <small><i class="text-muted">'.timeago($e['time']).'</i></small><br/>
-                    <p>'.$e['noidung'].'</p>
+                    <p>'.strip_tags($e['noidung'], '<b><a><p><br><i><u><font>').'</p>
                     </div>
                 </div></div></div>';
             }
@@ -532,7 +532,39 @@ if(isset($_GET['test'])){
     }
 }  
 ?>
-
+<? elseif($entry == 'chat'): ?>
+<? if(login()){
+    if(isset($_POST['chat_nd'])){
+        $author = $_SESSION['logged'];
+        $nd = $_POST['chat_nd'];
+        $time = time() - 15;
+        $sql = "SELECT * FROM chat WHERE author = '$author' AND time >= $time";
+        if($conn->query($sql)->num_rows > 0){
+            echo 0;
+        }else{
+            $time += 15;
+            $sql = "INSERT INTO chat (noidung, author, time) VALUES ('$nd', '$author', '$time')";
+            if($conn->query($sql)){
+                echo 1;
+            }else{
+                echo 2;
+            }
+        }
+    }
+}
+?>
+<? elseif($entry == 'showchat') : ?>
+<? 
+$sql = "SELECT * FROM chat ORDER BY ID DESC";
+$kq = $conn->query($sql);
+if($kq->num_rows > 0){
+    while($e = mysqli_fetch_assoc($kq)){
+        echo '<li class="list-group-item text-left"><b>'.getsv($e['author'])['name'].'</b> <span class="badge bg-secondary">'.$e['author'].'</span>: '.strip_tags($e['noidung'], '<b><a><p><br><i><u><font>').'</li>';
+    }
+}else{
+    echo '<li class="list-group-item">Không có tin chat</li>';
+}
+?>
 <?php else :?>
 <i>Wrong data.</i>
 <?php endif ?>

@@ -155,8 +155,21 @@ function timeago($ptime)
         }
     }
 }
+function getoption($entry){
+    global $conn;
+    $sql = "SELECT * FROM option WHERE name = '$entry' LIMIT 1";
+    $kq = $conn->query($sql);
+    if($kq->num_rows > 0){
+        $e = mysqli_fetch_assoc($kq);
+        return $e['value'];
+    }else{
+        return 0;
+    }
+}
 //VARIABLE DEFINE
+define('VERSION', getoption('version'));
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 //session auto_start
 session_start();
+
 ?>

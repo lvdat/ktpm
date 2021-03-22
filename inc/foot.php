@@ -103,7 +103,7 @@
                 <li class="text-dark">
                 <i class="fas fa-eye"></i> Total views:           </li>
                 <li class="text-dark">
-                    <i class="fas fa-code-branch"></i> Version: 2.5.0-release
+                    <i class="fas fa-code-branch"></i> Version: <?=VERSION?>
                 </li>
                 </ul>
             </div>
