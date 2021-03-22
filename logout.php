@@ -7,5 +7,7 @@ if(login()){
     $sql = "DELETE FROM cookie WHERE path = '$path'";
     $conn->query($sql);
     header("Location: /");
+}else{
+    header("Location: /dangnhap");
 }
 ?>

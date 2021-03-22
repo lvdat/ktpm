@@ -171,5 +171,8 @@ define('VERSION', getoption('version'));
 date_default_timezone_set('Asia/Ho_Chi_Minh');
 //session auto_start
 session_start();
-
+$time = microtime();
+$time = explode(' ', $time);
+$time = $time[1] + $time[0];
+$start = $time;
 ?>

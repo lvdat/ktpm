@@ -6,6 +6,7 @@ RewriteRule ^chat$ /chat.php
 RewriteRule ^view/([0-9]+)$ /view.php?id=$1
 RewriteRule ^admin/create/(.*)$ /admin/create.php?action=$1
 RewriteRule ^view$ /view.php
-RewriteRule ^profile$ /profile.php
-RewriteRule ^profile/edit /profile.php?action=edit
+RewriteRule ^profile$ /profile.php?action=view
+RewriteRule ^profile/edit$ /profile.php?action=edit
 RewriteRule ^u/(.*)$ /profile.php?action=view&mssv=$1
+RewriteRule ^profile/edit/(.*)$ /profile.php?action=edit&edit_action=$1

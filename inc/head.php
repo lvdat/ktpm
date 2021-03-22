@@ -43,12 +43,27 @@ if(login()){
         <!-- Javascript -->
         <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/asset/js/jquery.min.js"></script>
+        <script type="text/javascript">
+            (function(t,n,e){"use strict";function i(n,e){this.element=n,this.options=t.extend({},o,e),this._defaults=o,this._name=a,this.init()}var a="pusher",o={watch:"a",initialPath:n.location.pathname,before:function(t){t();$("#overlay").fadeIn(200);},handler:function(){},after:function(){$("html, body").animate({ scrollTop: 0 }, "slow");},fail:function(){n.alert("Failed to load "+this.state.path)},onStateCreation:function(){}};i.prototype={init:function(){var e=this;if(history.pushState){var i=r({path:e.options.initialPath},e.options.onStateCreation);history.replaceState(i,null,i.path),t(e.element).on("click",e.options.watch,function(n){n.preventDefault();var i=r({path:t(this).attr("href"),elem:t(this)},e.options.onStateCreation);s(e,i,!0)}),n.addEventListener("popstate",function(t){s(e,t.state)})}}};var r=function(t,n){var e={};return t=t||{},e.path=t.path,e.time=(new Date).getTime(),n&&n(e,t.elem),e},s=function(n,e,i){if(e){var a={state:e,get:function(t){return u(a.res,t)},updateText:function(n){var e=t(n);this.get(n).each(function(n){var i=t(this).text();e.eq(n).text(i)})},updateHtml:function(n){var e=t(n);this.get(n).each(function(n){var i=t(this).contents();e.eq(n).html(i)})}},o=function(){t.ajax({type:"GET",url:e.path}).done(function(t){a.res=t,i&&history.pushState(e,null,e.path),n.options.handler.apply(a)}).fail(function(){n.options.fail.apply(a)}).always(function(){n.options.after.apply(a)})};n.options.before.apply(a,[o])}},u=function(n,e){var i=t("<root>").html(n),a=i.find(e);return a};t.fn[a]=function(n){t.data(e,"plugin_"+a)||t.data(e,"plugin_"+a,new i(this,n))}})(jQuery,window,document);
+            $(document).pusher({
+                handler: function() {
+                    this.updateHtml("#maintxt");
+                    $("#overlay").fadeOut(200);
+                }
+            });
+        </script>
         <? if(isset($editor)): ?>
         <link rel="stylesheet" href="/quill/quill.snow.css">
         <script type="text/javascript" src="/quill/quill.min.js"></script>
         <? endif ?>
     </head>
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
     <body onload="time()">
+    <div id="maintxt">
     <!-- nav -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
@@ -65,7 +80,7 @@ if(login()){
                 <a class="nav-link" aria-current="page" href="/" title="Trang chủ"><i class="fas fa-home"></i> Trang chủ</a>
                 </li>
                 <li class="nav-item">
-                <a target="_blank" class="nav-link" href="//codetrain.co" title="CodeTrain - Luyện lập trình trực tuyến"><i class="fas fa-code"></i> Luyện lập trình</a>
+                <a target="_blank" class="nav-link" style="cursor: pointer" onclick="codetrain()" title="CodeTrain - Luyện lập trình trực tuyến"><i class="fas fa-code"></i> Luyện lập trình</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="/chat" title="Phòng trò chuyện"><i class="fas fa-comments"></i> Phòng trò chuyện</a>
@@ -89,30 +104,41 @@ if(login()){
                         </ul>
                     </li>
                 <? else: ?>
-                    <li class="nav-item"><a href="/dangnhap" title="Đăng nhập hệ thống" class="nav-link"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a></li>
+                    <li class="nav-item"><a onclick="dangnhap()" title="Đăng nhập hệ thống" class="nav-link"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a></li>
                 <? endif ?>
             </ul>
             </div>
         </div>
+        <script>function codetrain(){
+            window.open("https://codetrain.co", "_blank");
+        }
+        function dangnhap(){
+            window.location = "/dangnhap";
+        }</script>
     </nav>
     <!-- end nav -->
-    <div class="container-md" id="maintxt">
+    <div class="container-md">
         <div class="row d-flex justify-content-center" id="row">
             <div class="d-none d-md-block col-md-3">
-              <div class="sticky"><div class="card">
-              <div class="card-header"><i class="fas fa-cogs"></i> Hệ thống</div>
-                <ul class="list-group list-group-flush">
-                <li class="list-group-item text-center"><?=date("d/m/Y | H:i:s")?></li>
-                <li class="list-group-item">IP: <?=getip()?></li>
-                <li class="list-group-item">Lượt xem trang: </li>
-                <li class="list-group-item">Load trang trong: <span id="load_time"></span>ms
-                <script>
-                window.onload = function () {
-                    var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
-                    $('#load_time').html(loadTime); 
-                }
-                </script> </li>
-                </ul>
-              </div>
-            </div></div>
+              <div class="sticky">
+                    <div class="card mb-2">
+                        <div class="card-header"><i class="fas fa-cogs"></i> Hệ thống</div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item text-center"><?=date("d/m/Y | H:i:s")?></li>
+                                <li class="list-group-item"><i class="fas fa-map-marker-alt"></i> IP: <?=getip()?></li>
+                                <li class="list-group-item"><i class="fas fa-eye"></i> Lượt xem trang: </li>
+                                <?php
+                                    $time = microtime();
+                                    $time = explode(' ', $time);
+                                    $time = $time[1] + $time[0];
+                                    $finish = $time;
+                                    $total_time = round(($finish - $start)*1000, 4);
+                                    echo '<li class="list-group-item"><i class="fas fa-clock"></i> Thời gian load trang: '.$total_time.' ms.</li>';
+                                ?>
+                                <li class="list-group-item"><i class="fas fa-code-branch"></i> Version: <?=VERSION?> </li>
+                            </ul>
+                    </div>
+                    <div id="head_addon"></div>
+                </div>  
+            </div>
             <div class="col-md-6">
