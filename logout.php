@@ -6,7 +6,10 @@ if(login()){
     $path = $_COOKIE['path'];
     $sql = "DELETE FROM cookie WHERE path = '$path'";
     $conn->query($sql);
+    if(!isset($_GET['redirect']))
     header("Location: /");
+    else
+    header("Location: ".$_GET['redirect']);
 }else{
     header("Location: /dangnhap");
 }

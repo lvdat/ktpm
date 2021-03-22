@@ -126,7 +126,18 @@ if(login()){
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item text-center"><?=date("d/m/Y | H:i:s")?></li>
                                 <li class="list-group-item"><i class="fas fa-map-marker-alt"></i> IP: <?=getip()?></li>
-                                <li class="list-group-item"><i class="fas fa-eye"></i> Lượt xem trang: </li>
+                                <li class="list-group-item"><i class="fas fa-eye"></i> Lượt xem trang: <?
+                                    $CountFile = $_SERVER['DOCUMENT_ROOT']."/index.log";
+                                    $CF = fopen ($CountFile, "r");
+                                    $Views = fread ($CF, filesize ($CountFile));
+                                    fclose ($CF);
+                                    $Views++; 
+
+                                    $CF = fopen ($CountFile, "w");
+                                    fwrite ($CF, $Views); 
+                                    fclose ($CF); 
+                                    echo ($Views);
+                                    ?></li>
                                 <?php
                                     $time = microtime();
                                     $time = explode(' ', $time);
