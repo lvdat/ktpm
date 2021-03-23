@@ -34,27 +34,67 @@ if(login()){
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
         <div class="alert alert-primary" role="alert">
-        Một số mục không thể chỉnh sửa do là thông tin cố định. Nếu có sai sót vui lòng liên hệ mình để chỉnh sửa nhé, các thông tin này sẽ được sử dụng trong các công việc liên quan đến lớp, Đoàn,... và sẽ được bảo mật tất cả
+        Các mục không thể chỉnh sửa do là thông tin cố định. Nếu có sai sót vui lòng liên hệ mình để chỉnh sửa nhé, các thông tin này sẽ được sử dụng trong các công việc liên quan đến lớp, Đoàn,... và sẽ được bảo mật tất cả
         </div></li>
         <li class="list-group-item">
             <div class="form-group row">
-            <div class="col-md-2 text-center">Tên SV: </div><div class="col-md-10"><input class="form-control" disabled value="<?=getsv(MSSV)['name']?>"></div>
+            <div class="col-md-3 text-center">Tên SV: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['name']?>"></div>
             </div>
         </li>
         <li class="list-group-item">
             <div class="form-group row">
-            <div class="col-md-2 text-center">MSSV: </div><div class="col-md-10"><input class="form-control" disabled value="<?=MSSV?>"></div>
+            <div class="col-md-3 text-center">MSSV: </div><div class="col-md-9"><input class="form-control" disabled value="<?=MSSV?>"></div>
             </div>
         </li>
         <li class="list-group-item">
             <div class="form-group row">
-            <div class="col-md-2 text-center">Email: </div><div class="col-md-10"><input class="form-control" disabled value="<?=getsv(MSSV)['mail']?>"></div>
+            <div class="col-md-3 text-center">Email: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['mail']?>"></div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="form-group row">
+            <div class="col-md-3 text-center">SDT cá nhân: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['sdt']?>"></div>
             </div>
         </li>
     </ul>
-    
-    
-    
+    </div>
+    <div class="card mb-2">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="form-group row">
+                <div class="col-md-3 text-center">Chức vụ: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['chucvu']?>"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-group row">
+                <div class="col-md-3 text-center">Ngày vào Đoàn: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['ngayvaodoan']?>"></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card mb-2">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="form-group row">
+                <div class="col-md-3 text-center">(Trọ/Nhà/KTX): </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['noiohientai']?>"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-group row">
+                <div class="col-md-3 text-center">Quê quán: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['quequan']?>"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-group row">
+                <div class="col-md-3 text-center">SDT gia đình: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['sdtgiadinh']?>"></div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="form-group row">
+                <div class="col-md-3 text-center">SDT chủ trọ/bạn cùng phòng: </div><div class="col-md-9"><input class="form-control" disabled value="<?=getsv(MSSV)['sdtbancungphong']?>"></div>
+                </div>
+            </li>
+        </ul>
     </div>
     <? elseif($action_edit == 'avatar') :?>
     <?

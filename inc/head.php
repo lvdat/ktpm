@@ -98,7 +98,6 @@ if(login()){
                                 <li><a class="dropdown-item" title="Quản lí" href="/admin"><i class="fas fa-user-shield"></i> Admin Panel</a></li>
                             <? endif ?>
                             <li><a class="dropdown-item" href="/profile/edit" title="Cài đặt tài khoản"><i class="fas fa-cog"></i> Cài đặt tài khoản</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="/logout" title="Đăng xuất khỏi hệ thống"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a></li>
                         </ul>
@@ -143,7 +142,7 @@ if(login()){
                                     $time = explode(' ', $time);
                                     $time = $time[1] + $time[0];
                                     $finish = $time;
-                                    $total_time = round(($finish - $start)*1000, 4);
+                                    $total_time = round(($finish - $start)*100000, 2);
                                     echo '<li class="list-group-item"><i class="fas fa-clock"></i> Thời gian load trang: '.$total_time.' ms.</li>';
                                 ?>
                                 <li class="list-group-item"><i class="fas fa-code-branch"></i> Version: <?=VERSION?> </li>

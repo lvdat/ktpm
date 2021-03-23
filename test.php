@@ -1,9 +1,51 @@
-<div class="card mb-2">
-<div class="card-body">
-<div class="row">
-    <div class="col-2 text-center"><img src="'.getsv($e['author'])['avatar'].'" width="50%" style="border-radius: 50%"></div>
-    <div class="col-10 text-left"><b>'.getsv($e['author'])['name'].'</b> <span class="badge bg-secondary">'.$e['author'].'</span><br />
-    <small><i class="text-muted">'.timeago($e['time']).'</i></small><br/>
-    <p>'.$e['noidung'].'</p>
-    </div>
-</div></div></div>
+<?
+include './inc/all.php';
+require_once 'Classes/PHPExcel.php';
+
+//Đường dẫn file
+$file = 'test.xlsx';
+//Tiến hành xác thực file
+$objFile = PHPExcel_IOFactory::identify($file);
+$objData = PHPExcel_IOFactory::createReader($objFile);
+
+//Chỉ đọc dữ liệu
+$objData->setReadDataOnly(true);
+
+// Load dữ liệu sang dạng đối tượng
+$objPHPExcel = $objData->load($file);
+
+//Lấy ra số trang sử dụng phương thức getSheetCount();
+// Lấy Ra tên trang sử dụng getSheetNames();
+
+//Chọn trang cần truy xuất
+$sheet = $objPHPExcel->setActiveSheetIndex(0);
+
+//Lấy ra số dòng cuối cùng
+$Totalrow = $sheet->getHighestRow();
+//Lấy ra tên cột cuối cùng
+$LastColumn = $sheet->getHighestColumn();
+
+//Chuyển đổi tên cột đó về vị trí thứ, VD: C là 3,D là 4
+$TotalCol = PHPExcel_Cell::columnIndexFromString($LastColumn);
+
+//Tạo mảng chứa dữ liệu
+$data = [];
+
+//Tiến hành lặp qua từng ô dữ liệu
+//----Lặp dòng, Vì dòng đầu là tiêu đề cột nên chúng ta sẽ lặp giá trị từ dòng 2
+for ($i = 2; $i <= $Totalrow; $i++) {
+    //----Lặp cột
+    for ($j = 0; $j < $TotalCol; $j++) {
+        // Tiến hành lấy giá trị của từng ô đổ vào mảng
+        $data[$i - 2][$j] = $sheet->getCellByColumnAndRow($j, $i)->getValue();;
+    }
+    updatesv($data[$i - 2][4], 'chucvu', $data[$i - 2][7]);
+    updatesv($data[$i - 2][4], 'sdtgiadinh', $data[$i - 2][11]);
+    updatesv($data[$i - 2][4], 'sdtbancungphong', $data[$i - 2][12]);
+    updatesv($data[$i - 2][4], 'noiohientai', $data[$i - 2][9]);
+    updatesv($data[$i - 2][4], 'quequan', $data[$i - 2][10]);
+}
+//Hiển thị mảng dữ liệu
+echo '<pre>';
+var_dump($data);
+?>

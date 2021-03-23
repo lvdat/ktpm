@@ -166,6 +166,13 @@ function getoption($entry){
         return 0;
     }
 }
+function updatesv($mssv, $entry, $value){
+    global $conn;
+    $sql = "UPDATE dssv SET ".$entry." = '$value' WHERE mssv = '$mssv'";
+    if($conn->query($sql)){
+        echo 'Done!';
+    }
+}
 //VARIABLE DEFINE
 define('VERSION', getoption('version'));
 date_default_timezone_set('Asia/Ho_Chi_Minh');
